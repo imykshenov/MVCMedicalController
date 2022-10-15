@@ -38,9 +38,9 @@ namespace MVCMedicalController.Models
             }
         }
         
-        public ICollection<Cabinet> Cabinets{ get; set; }
-        public ICollection<Speciality> Specialitys { get; set; }
-        public ICollection<Sector> Sectors { get; set; }
+        public ICollection<Cabinet>? Cabinets{ get; set; }
+        public ICollection<Speciality>? Specialitys { get; set; }
+        public ICollection<Sector> Sectors { get; set; } 
 
        
 

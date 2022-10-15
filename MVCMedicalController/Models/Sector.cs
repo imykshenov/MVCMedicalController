@@ -16,7 +16,7 @@ namespace MVCMedicalController.Models
         [Required]
         [StringLength(30)]
         [Display(Name = "Номер участка")]
-        public string Title { get; set; }
+        public string Title { get; set; } = string.Empty;
 
     }
 }
