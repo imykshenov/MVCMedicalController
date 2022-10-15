@@ -33,11 +33,11 @@ namespace MVCMedicalController.Controllers
             return View(await sectors.ToListAsync());
         }
 
-        [HttpPost]
-        public string Index(string searchString, bool notUsed)
-        {
-            return "From [HttpPost]Index: filter on " + searchString;
-        }
+        //[HttpPost]
+        //public string Index(string searchString, bool notUsed)
+        //{
+        //    return "From [HttpPost]Index: filter on " + searchString;
+        //}
 
 
         // GET: Sectors/Details/5

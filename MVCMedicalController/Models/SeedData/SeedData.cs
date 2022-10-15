@@ -22,7 +22,7 @@ namespace MVCMedicalController.Models.SeedData
                 //    return;   // DB has been seeded
                 //}
 
-                for (int i = 1; i <= 5; i++)
+                for (var i = 1; i <= 5; i++)
                 {
                     if (!context.Cabinet.Any())
                     {

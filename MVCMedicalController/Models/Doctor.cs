@@ -37,18 +37,12 @@ namespace MVCMedicalController.Models
                 return DoctorSoName + " " + DoctorName + " " + DoctorFatherName;
             }
         }
+        
+        public ICollection<Cabinet> Cabinets{ get; set; }
+        public ICollection<Speciality> Specialitys { get; set; }
+        public ICollection<Sector> Sectors { get; set; }
 
-        [Key]
-        [ForeignKey("CabinetsModel")]
-        public int CabinetId { get; set; }
-
-        [Key]
-        [ForeignKey("SpecialityModel")]
-        public int Speciality { get; set; }
-
-        [Key]
-        [ForeignKey("SectorModel")]
-        public int SectorID { get; set; }
+       
 
     }
 }

@@ -20,10 +20,24 @@ namespace MVCMedicalController.Controllers
         }
 
         // GET: Specialities
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-              return View(await _context.Speciality.ToListAsync());
+            var doctor = from m in _context.Speciality
+                select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                doctor = doctor.Where(s => s.SpecialityName!.Contains(searchString));
+            }
+
+            return View(await doctor.ToListAsync());
         }
+
+        //[HttpPost]
+        //public string Index(string searchString, bool notUsed)
+        //{
+        //    return "From [HttpPost]Index: filter on " + searchString;
+        //}
 
         // GET: Specialities/Details/5
         public async Task<IActionResult> Details(int? id)

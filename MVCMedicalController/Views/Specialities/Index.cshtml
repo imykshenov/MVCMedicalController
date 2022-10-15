@@ -1,14 +1,22 @@
 ﻿@model IEnumerable<MVCMedicalController.Models.Speciality>
 
 @{
-    ViewData["Title"] = "Направления";
+    ViewData["Title"] = "Специальность врача";
 }
 
-<h1>Специальность</h1>
+<h1>Специальность врача</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+<form asp-controller="Specialities" asp-action="Index">
+    <p>
+        Title: <input type="text" name="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
 <table class="table">
     <thead>
         <tr>

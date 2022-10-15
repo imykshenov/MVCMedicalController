@@ -43,9 +43,7 @@ namespace MVCMedicalController.Models
         [Display(Name = "Father Name")]
         public string Sex { get; set; }
 
-        [Key]
-        [ForeignKey("SectorModel")]
-        public int Sector { get; set; }
+        public ICollection<Sector> Sectors { get; set; }
 
         [Display(Name = "Full Name")]
         public string PatientFullName
