@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MVCMedicalController.Migrations
 {
-    [DbContext(typeof(MVCMedicalControllerContext))]
+    [DbContext(typeof(MedControlContext))]
     [Migration("CabinetMigration")]
     partial class CabinetMigration
     {

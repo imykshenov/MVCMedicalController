@@ -12,9 +12,9 @@ namespace MVCMedicalController.Models.SeedData
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
-            using (var context = new MVCMedicalControllerContext(
+            using (var context = new MedControlContext(
                        serviceProvider.GetRequiredService<
-                           DbContextOptions<MVCMedicalControllerContext>>()))
+                           DbContextOptions<MedControlContext>>()))
             {
                 // Look for any movies.
                 //if (context.Cabinet.Any() || context.Sector.Any() || context.Speciality.Any())

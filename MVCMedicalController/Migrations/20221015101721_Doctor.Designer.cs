@@ -4,6 +4,7 @@ using MVCMedicalController.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVCMedicalController.Migrations
 {
     [DbContext(typeof(MedControlContext))]
-    partial class MVCMedicalControllerContextModelSnapshot : ModelSnapshot
+    [Migration("20221015101721_Doctor")]
+    partial class Doctor
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -10,99 +10,85 @@ using MVCMedicalController.Models;
 
 namespace MVCMedicalController.Controllers
 {
-    public class SpecialitiesController : Controller
+    public class DoctorsController : Controller
     {
         private readonly MedControlContext _context;
 
-        public SpecialitiesController(MedControlContext context)
+        public DoctorsController(MedControlContext context)
         {
             _context = context;
         }
 
-        // GET: Specialities
-        public async Task<IActionResult> Index(string searchString)
+        // GET: Doctors
+        public async Task<IActionResult> Index()
         {
-            var doctor = from m in _context.Speciality
-                select m;
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                doctor = doctor.Where(s => s.SpecialityName!.Contains(searchString));
-            }
-
-            return View(await doctor.ToListAsync());
+              return View(await _context.Doctor.ToListAsync());
         }
 
-        //[HttpPost]
-        //public string Index(string searchString, bool notUsed)
-        //{
-        //    return "From [HttpPost]Index: filter on " + searchString;
-        //}
-
-        // GET: Specialities/Details/5
+        // GET: Doctors/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Speciality == null)
+            if (id == null || _context.Doctor == null)
             {
                 return NotFound();
             }
 
-            var speciality = await _context.Speciality
-                .FirstOrDefaultAsync(m => m.SpecialityID == id);
-            if (speciality == null)
+            var doctor = await _context.Doctor
+                .FirstOrDefaultAsync(m => m.DoctorID == id);
+            if (doctor == null)
             {
                 return NotFound();
             }
 
-            return View(speciality);
+            return View(doctor);
         }
 
-        // GET: Specialities/Create
+        // GET: Doctors/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Specialities/Create
+        // POST: Doctors/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("SpecialityID,SpecialityName")] Speciality speciality)
+        public async Task<IActionResult> Create([Bind("DoctorID,DoctorSoName,DoctorName,DoctorFatherName")] Doctor doctor)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(speciality);
+                _context.Add(doctor);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(speciality);
+            return View(doctor);
         }
 
-        // GET: Specialities/Edit/5
+        // GET: Doctors/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Speciality == null)
+            if (id == null || _context.Doctor == null)
             {
                 return NotFound();
             }
 
-            var speciality = await _context.Speciality.FindAsync(id);
-            if (speciality == null)
+            var doctor = await _context.Doctor.FindAsync(id);
+            if (doctor == null)
             {
                 return NotFound();
             }
-            return View(speciality);
+            return View(doctor);
         }
 
-        // POST: Specialities/Edit/5
+        // POST: Doctors/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("SpecialityID,SpecialityName")] Speciality speciality)
+        public async Task<IActionResult> Edit(int id, [Bind("DoctorID,DoctorSoName,DoctorName,DoctorFatherName")] Doctor doctor)
         {
-            if (id != speciality.SpecialityID)
+            if (id != doctor.DoctorID)
             {
                 return NotFound();
             }
@@ -111,12 +97,12 @@ namespace MVCMedicalController.Controllers
             {
                 try
                 {
-                    _context.Update(speciality);
+                    _context.Update(doctor);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SpecialityExists(speciality.SpecialityID))
+                    if (!DoctorExists(doctor.DoctorID))
                     {
                         return NotFound();
                     }
@@ -127,49 +113,49 @@ namespace MVCMedicalController.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(speciality);
+            return View(doctor);
         }
 
-        // GET: Specialities/Delete/5
+        // GET: Doctors/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Speciality == null)
+            if (id == null || _context.Doctor == null)
             {
                 return NotFound();
             }
 
-            var speciality = await _context.Speciality
-                .FirstOrDefaultAsync(m => m.SpecialityID == id);
-            if (speciality == null)
+            var doctor = await _context.Doctor
+                .FirstOrDefaultAsync(m => m.DoctorID == id);
+            if (doctor == null)
             {
                 return NotFound();
             }
 
-            return View(speciality);
+            return View(doctor);
         }
 
-        // POST: Specialities/Delete/5
+        // POST: Doctors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Speciality == null)
+            if (_context.Doctor == null)
             {
-                return Problem("Entity set 'MedControlContext.Speciality'  is null.");
+                return Problem("Entity set 'MedControlContext.Doctor'  is null.");
             }
-            var speciality = await _context.Speciality.FindAsync(id);
-            if (speciality != null)
+            var doctor = await _context.Doctor.FindAsync(id);
+            if (doctor != null)
             {
-                _context.Speciality.Remove(speciality);
+                _context.Doctor.Remove(doctor);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool SpecialityExists(int id)
+        private bool DoctorExists(int id)
         {
-          return _context.Speciality.Any(e => e.SpecialityID == id);
+          return _context.Doctor.Any(e => e.DoctorID == id);
         }
     }
 }

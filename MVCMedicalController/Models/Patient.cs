@@ -17,22 +17,22 @@ namespace MVCMedicalController.Models
         [Required]
         [StringLength(80)]
         [Display(Name = "Second Name")]
-        public string PatientSoName { get; set; }
+        public string PatientSoName { get; set; } = "Иванов";
 
         [Required]
         [StringLength(50)]
         [Display(Name = "First Name")]
-        public string PatientName { get; set; }
+        public string? PatientName { get; set; } = "Иван";
 
         [Required]
         [StringLength(50)]
         [Display(Name = "Father Name")]
-        public string PatientFatherName { get; set; }
+        public string? PatientFatherName { get; set; } = "Иванович";
 
         [Required]
         [StringLength(200)]
         [Display(Name = "Adress")]
-        public string Adress { get; set; }
+        public string? Adress { get; set; } = "Адрес";
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
@@ -41,9 +41,9 @@ namespace MVCMedicalController.Models
         [Required]
         [StringLength(10)]
         [Display(Name = "Father Name")]
-        public string Sex { get; set; }
+        public string? Sex { get; set; } = "муж";
 
-        public ICollection<Sector>? Sectors { get; set; }
+        public Sector? Sectors { get; set; }
 
         [Display(Name = "Full Name")]
         public string PatientFullName

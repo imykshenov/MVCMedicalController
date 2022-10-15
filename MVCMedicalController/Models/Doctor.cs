@@ -17,17 +17,17 @@ namespace MVCMedicalController.Models
         [Required]
         [StringLength(80)]
         [Display(Name = "Second Name")]
-        public string DoctorSoName { get; set; }
+        public string? DoctorSoName { get; set; } = "Иванов";
 
         [Required]
         [StringLength(50)]
         [Display(Name = "First Name")]
-        public string DoctorName { get; set; }
+        public string? DoctorName { get; set; } = "Иван";
 
         [Required]
         [StringLength(50)]
         [Display(Name = "Father Name")]
-        public string DoctorFatherName { get; set; }
+        public string? DoctorFatherName { get; set; } = "Иванович";
 
         [Display(Name = "Full Name")]
         public string DoctorFullName
@@ -38,11 +38,11 @@ namespace MVCMedicalController.Models
             }
         }
         
-        public ICollection<Cabinet>? Cabinets{ get; set; }
-        public ICollection<Speciality>? Specialitys { get; set; }
-        public ICollection<Sector> Sectors { get; set; } 
+        public Cabinet? Cabinets{ get; set; }
+        public Speciality? Specialitys { get; set; }
+        public Sector Sectors { get; set; } 
 
-       
+
 
     }
 }

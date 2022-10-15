@@ -12,9 +12,9 @@ namespace MVCMedicalController.Controllers
 {
     public class CabinetsController : Controller
     {
-        private readonly MVCMedicalControllerContext _context;
+        private readonly MedControlContext _context;
 
-        public CabinetsController(MVCMedicalControllerContext context)
+        public CabinetsController(MedControlContext context)
         {
             _context = context;
         }
@@ -141,7 +141,7 @@ namespace MVCMedicalController.Controllers
         {
             if (_context.Cabinet == null)
             {
-                return Problem("Entity set 'MVCMedicalControllerContext.Cabinet'  is null.");
+                return Problem("Entity set 'MedControlContext.Cabinet'  is null.");
             }
             var cabinet = await _context.Cabinet.FindAsync(id);
             if (cabinet != null)

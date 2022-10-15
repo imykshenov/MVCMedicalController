@@ -5,19 +5,31 @@ using MVCMedicalController.Models;
 using MVCMedicalController.Models.SeedData;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<MVCMedicalControllerContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("MVCMedicalControllerContext") ?? throw new InvalidOperationException("Connection string 'MVCMedicalControllerContext' not found.")));
+builder.Services.AddDbContext<MedControlContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("MedControlContext")));
 
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 // Add services to the container.
-builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+else
+{
+    app.UseDeveloperExceptionPage();
+    app.UseMigrationsEndPoint();
+}
 
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
 
-    SeedData.Initialize(services);
+    var context = services.GetRequiredService<MedControlContext>();
+    context.Database.EnsureCreated();
+    // DbInitializer.Initialize(context);
 }
 
 // Configure the HTTP request pipeline.

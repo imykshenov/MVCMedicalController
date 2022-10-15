@@ -12,9 +12,9 @@ namespace MVCMedicalController.Controllers
 {
     public class SectorsController : Controller
     {
-        private readonly MVCMedicalControllerContext _context;
+        private readonly MedControlContext _context;
 
-        public SectorsController(MVCMedicalControllerContext context)
+        public SectorsController(MedControlContext context)
         {
             _context = context;
         }
@@ -156,7 +156,7 @@ namespace MVCMedicalController.Controllers
         {
             if (_context.Sector == null)
             {
-                return Problem("Entity set 'MVCMedicalControllerContext.Sector'  is null.");
+                return Problem("Entity set 'MedControlContext.Sector'  is null.");
             }
             var sector = await _context.Sector.FindAsync(id);
             if (sector != null)

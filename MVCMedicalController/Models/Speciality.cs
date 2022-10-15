@@ -16,6 +16,6 @@ namespace MVCMedicalController.Models
         [Required]
         [StringLength(50)]
         [Display(Name = "Speciality")]
-        public string SpecialityName { get; set; }
+        public string? SpecialityName { get; set; }  = "Терапевт";
     }
 }
