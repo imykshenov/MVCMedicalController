@@ -15,5 +15,9 @@ namespace MVCMedicalController.Data
         }
 
         public DbSet<MVCMedicalController.Models.Sector> Sector { get; set; } = default!;
+
+        public DbSet<MVCMedicalController.Models.Cabinet> Cabinet { get; set; }
+
+        public DbSet<MVCMedicalController.Models.Speciality> Speciality { get; set; }
     }
 }

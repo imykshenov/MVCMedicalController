@@ -3,6 +3,7 @@ using MVCMedicalController.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVCMedicalController.Migrations
 {
     [DbContext(typeof(MVCMedicalControllerContext))]
-    partial class MVCMedicalControllerContextModelSnapshot : ModelSnapshot
+    [Migration("CabinetMigration")]
+    partial class CabinetMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,24 +57,6 @@ namespace MVCMedicalController.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Sector");
-                });
-
-            modelBuilder.Entity("MVCMedicalController.Models.Speciality", b =>
-                {
-                    b.Property<int>("SpecialityID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SpecialityID"), 1L, 1);
-
-                    b.Property<string>("SpecialityName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("SpecialityID");
-
-                    b.ToTable("Speciality");
                 });
 #pragma warning restore 612, 618
         }

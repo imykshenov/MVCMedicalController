@@ -14,7 +14,7 @@ namespace MVCMedicalController.Models
         public int CabinetID { get; set; }
 
         [Required]
-        [StringLength(4)]
+        [StringLength(30)]
         [Display(Name = "Number of cabinet")]
         public string CabinetNumber { get; set; }
     }

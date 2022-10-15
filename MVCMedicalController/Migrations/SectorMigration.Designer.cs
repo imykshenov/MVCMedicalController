@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVCMedicalController.Migrations
 {
     [DbContext(typeof(MVCMedicalControllerContext))]
-    [Migration("20221015064924_InitialCreate")]
-    partial class InitialCreate
+    [Migration("SectorMigration")]
+    partial class SectorMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

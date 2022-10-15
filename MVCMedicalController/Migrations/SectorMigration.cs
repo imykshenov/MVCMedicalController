@@ -4,7 +4,7 @@
 
 namespace MVCMedicalController.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class SectorMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
