@@ -35,7 +35,7 @@ namespace MVCMedicalController.Models
         [Required]
         [StringLength(300)]
         [Display(Name = "Adress")]
-        [Column("SpecialityName")]
+        [Column("Adress")]
         public string? Adress { get; set; } = "Адрес";
 
         [DataType(DataType.Date)]

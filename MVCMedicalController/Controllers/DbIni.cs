@@ -11,7 +11,7 @@
 //{
 //    public class DbIni
 //    {
-//        public static void Initialize(MedControlContext context)
+//        public static void Initialize(MedicalContextDB context)
 //        {
 //            // Look for any students.
 //            if (context.Doctor.Any())
@@ -35,18 +35,18 @@
 //            context.Cabinet.AddRange(cabinets);
 //            context.SaveChanges();
 
-            
+
 
 //            var sector = new Sector[]
 //            {
-//                new Sector{Title = "Участок 1"},
-//                new Sector{Title = "Участок 2"},
-//                new Sector{Title = "Участок 3"},
-//                new Sector{Title = "Участок 4"},
-//                new Sector{Title = "Участок 5"},
-//                new Sector{Title = "Участок 6"},
-//                new Sector{Title = "Участок 7"},
-//                new Sector{Title = "Участок 8"},
+//                new Sector{SectorName = "Участок 1"},
+//                new Sector{SectorName = "Участок 2"},
+//                new Sector{SectorName = "Участок 3"},
+//                new Sector{SectorName = "Участок 4"},
+//                new Sector{SectorName = "Участок 5"},
+//                new Sector{SectorName = "Участок 6"},
+//                new Sector{SectorName = "Участок 7"},
+//                new Sector{SectorName = "Участок 8"},
 
 //            };
 
@@ -67,7 +67,7 @@
 //            context.Patient.AddRange(patients);
 //            context.SaveChanges();
 
-            
+
 
 //            var spec = new Speciality[]
 //            {
