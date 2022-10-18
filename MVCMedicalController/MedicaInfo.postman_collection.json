@@ -1,0 +1,100 @@
+{
+	"info": {
+		"_postman_id": "48d20e3f-5a65-4bba-bace-d29a88005bf7",
+		"name": "MedicaInfo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12962708"
+	},
+	"item": [
+		{
+			"name": "GetPatients",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "GetDoctors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7234/api/DoctorsWeb",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7234",
+					"path": [
+						"api",
+						"DoctorsWeb"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCurrentPatient",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "GetCurrentDoctor",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "PutPatient",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteCurrentPatient",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "PutDoctor",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"doctorSoName\": \"Сомов\",\r\n    \"doctorName\": \"Дмитрий\",\r\n    \"doctorFatherName\": \"Константинович\",\r\n    \"doctorFullName\": \"Сомов Дмитрий Константинович\",\r\n    \"cabinetID\": 6,\r\n    \"cabinet\": null,\r\n    \"specialityID\": 1,\r\n    \"speciality\": null,\r\n    \"sectorID\": 6,\r\n    \"sector\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7234/api/DoctorsWeb/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7234",
+					"path": [
+						"api",
+						"DoctorsWeb",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
