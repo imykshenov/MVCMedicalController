@@ -26,7 +26,10 @@ namespace MVCMedicalController.Controllers
         //    return View(await medicalContextDB.ToListAsync());
         //}
 
-        public async Task<IActionResult> Index(string sortOrder, string searchString)
+        public async Task<IActionResult> Index(string sortOrder,
+            string currentFilter,
+            string searchString,
+            int? pageNumber)
         {
             var patients = from s in _context.Patients
                 select s;
@@ -36,11 +39,22 @@ namespace MVCMedicalController.Controllers
             {
                 patients = patients.Where(s => s.PatientName.Contains(searchString) || s.PatientSoName.Contains(searchString) || s.PatientFatherName.Contains(searchString));
             }
+
+            ViewData["CurrentSort"] = sortOrder;
             ViewData["PatientName"] = String.IsNullOrEmpty(sortOrder) ? "PatientName" : "";
             ViewData["PatientSoName"] = String.IsNullOrEmpty(sortOrder) ? "PatientSoName" : "";
             ViewData["PatientFatherName"] = String.IsNullOrEmpty(sortOrder) ? "PatientFatherName" : "";
             ViewData["DateOfBirth"] = String.IsNullOrEmpty(sortOrder) ? "DateOfBirth" : "";
-            
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
             switch (sortOrder)
             {
                 case "PatientName":
@@ -60,7 +74,8 @@ namespace MVCMedicalController.Controllers
                     patients = patients.OrderBy(s => s.PatientSoName);
                     break;
             }
-            return View(await patients.AsNoTracking().ToListAsync());
+            int pageSize = 3;
+            return View(await PaginatedList<Patient>.CreateAsync(patients.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: Patients/Details/5

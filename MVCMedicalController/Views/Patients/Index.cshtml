@@ -1,13 +1,12 @@
-﻿@model IEnumerable<MVCMedicalController.Models.Patient>
-
+﻿@model PaginatedList<MVCMedicalController.Models.Patient>
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Пациенты</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Добавить пациента</a>
 </p>
 
 <form asp-action="Index" method="get">
@@ -24,31 +23,31 @@
     <thead>
     <tr>
         <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["PatientSoName"]">@Html.DisplayNameFor(model => model.PatientSoName)</a>
+            <a asp-action="Index" asp-route-sortOrder="@ViewData["PatientName"]" asp-route-currentFilter="@ViewData["PatientName"]">Имя</a>
         </th>
         <th>
-            <a asp-action="Index" asp-route-sortOrder="@ViewData["PatientName"]">@Html.DisplayNameFor(model => model.PatientName)</a>
+            <a asp-action="Index" asp-route-sortOrder="@ViewData["PatientSoName"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Фамилия</a>
         </th>
         <th>
-            <a asp-action="Index" asp-route-sortOrder="@ViewData["PatientFatherName"]">@Html.DisplayNameFor(model => model.PatientFatherName)</a>
+            <a asp-action="Index" asp-route-sortOrder="@ViewData["PatientFatherName"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Отчество</a>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Adress)
+            Адресс
         </th>
         <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateOfBirth"]">@Html.DisplayNameFor(model => model.DateOfBirth)</a>
+            <a asp-action="Index" asp-route-sortOrder="@ViewData["DateOfBirth"]" asp-route-currentFilter="@ViewData["DateOfBirth"]">Адресс</a>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Sex)
+            Пол
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Sector)
+            Участок
         </th>
         <th></th>
     </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+    @foreach (var item in Model) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.PatientSoName)
@@ -77,6 +76,26 @@
                 <a asp-action="Delete" asp-route-id="@item.PatientId">Delete</a>
             </td>
         </tr>
-}
+    }
     </tbody>
 </table>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>

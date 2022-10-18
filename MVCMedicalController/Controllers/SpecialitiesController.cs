@@ -20,9 +20,25 @@ namespace MVCMedicalController.Controllers
         }
 
         // GET: Specialities
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder,
+            string currentFilter,
+            string searchString,
+            int? pageNumber)
         {
-              return View(await _context.Specialties.ToListAsync());
+            var spec = from m in _context.Specialties
+                select m;
+
+            ViewData["CurrentFilter"] = searchString;
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            int pageSize = 3;
+            return View(await PaginatedList<Speciality>.CreateAsync(spec.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: Specialities/Details/5
