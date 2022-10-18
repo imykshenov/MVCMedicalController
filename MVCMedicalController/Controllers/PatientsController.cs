@@ -20,10 +20,47 @@ namespace MVCMedicalController.Controllers
         }
 
         // GET: Patients
-        public async Task<IActionResult> Index()
+        //public async Task<IActionResult> Index()
+        //{
+        //    var medicalContextDB = _context.Patients.Include(p => p.Sector);
+        //    return View(await medicalContextDB.ToListAsync());
+        //}
+
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            var medicalContextDB = _context.Patients.Include(p => p.Sector);
-            return View(await medicalContextDB.ToListAsync());
+            var patients = from s in _context.Patients
+                select s;
+            ViewData["CurrentFilter"] = searchString;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                patients = patients.Where(s => s.PatientName.Contains(searchString) || s.PatientSoName.Contains(searchString) || s.PatientFatherName.Contains(searchString));
+            }
+            ViewData["PatientName"] = String.IsNullOrEmpty(sortOrder) ? "PatientName" : "";
+            ViewData["PatientSoName"] = String.IsNullOrEmpty(sortOrder) ? "PatientSoName" : "";
+            ViewData["PatientFatherName"] = String.IsNullOrEmpty(sortOrder) ? "PatientFatherName" : "";
+            ViewData["DateOfBirth"] = String.IsNullOrEmpty(sortOrder) ? "DateOfBirth" : "";
+            
+            switch (sortOrder)
+            {
+                case "PatientName":
+                    patients = patients.OrderByDescending(s => s.PatientName);
+                    break;
+                case "PatientSoName":
+                    patients = patients.OrderByDescending(s => s.PatientSoName);
+                    break;
+                case "PatientFatherName":
+                    patients = patients.OrderByDescending(s => s.PatientFatherName);
+                    break;
+                case "DateOfBirth":
+                    patients = patients.OrderByDescending(s => s.DateOfBirth);
+                    break;
+                
+                default:
+                    patients = patients.OrderBy(s => s.PatientSoName);
+                    break;
+            }
+            return View(await patients.AsNoTracking().ToListAsync());
         }
 
         // GET: Patients/Details/5

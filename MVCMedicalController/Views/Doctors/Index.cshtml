@@ -10,30 +10,33 @@
     <a asp-action="Create">Create New</a>
 </p>
 
-<form asp-controller="Doctors" asp-action="Index">
-    <p>
-        Title: <input type="text" name="SearchString" />
-        <input type="submit" value="Filter" />
-    </p>
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Фамилия: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-action="Index">Back to Full List</a>
+        </p>
+    </div>
 </form>
 
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.DoctorSoName)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DoctorSoName"]">@Html.DisplayNameFor(model => model.DoctorSoName)</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DoctorName)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DoctorName"]">@Html.DisplayNameFor(model => model.DoctorName)</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DoctorFatherName)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DoctorFatherName"]">@Html.DisplayNameFor(model => model.DoctorFatherName)</a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Cabinet)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Speciality)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["Speciality"]">@Html.DisplayNameFor(model => model.Speciality)</a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Sector)

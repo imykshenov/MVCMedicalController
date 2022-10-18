@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using MVCMedicalController.Data;
 using MVCMedicalController.Models;
@@ -26,17 +27,42 @@ namespace MVCMedicalController.Controllers
         //    return View(await medicalContextDB.ToListAsync());
         //}
 
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string searchString, string sortOrder)
         {
-            var medicalContextDB = from m in _context.Doctors.Include(d => d.Cabinet).Include(d => d.Sector).Include(d => d.Speciality)
+            var doctors = from m in _context.Doctors.Include(d => d.Cabinet).Include(d => d.Sector).Include(d => d.Speciality)
                          select m;
+
+            ViewData["CurrentFilter"] = searchString;
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                medicalContextDB = medicalContextDB.Where(s => s.DoctorSoName!.Contains(searchString));
+                doctors = doctors.Where(s => s.DoctorSoName.Contains(searchString) || s.DoctorName.Contains(searchString) || s.DoctorFatherName.Contains(searchString)) ;
             }
 
-            return View(await medicalContextDB.ToListAsync());
+
+            ViewData["DoctorName"] = String.IsNullOrEmpty(sortOrder) ? "DoctorName" : "";
+            ViewData["DoctorSoName"] = String.IsNullOrEmpty(sortOrder) ? "DoctorSoName" : "";
+            ViewData["DoctorFatherName"] = String.IsNullOrEmpty(sortOrder) ? "DoctorFatherName" : "";
+            ViewData["Speciality"] = String.IsNullOrEmpty(sortOrder) ? "Speciality" : "";
+            switch (sortOrder)
+            {
+                case "DoctorName":
+                    doctors = doctors.OrderByDescending(s => s.DoctorName);
+                    break;
+                case "DoctorSoName":
+                    doctors = doctors.OrderByDescending(s => s.DoctorSoName);
+                    break;
+                case "DoctorFatherName":
+                    doctors = doctors.OrderByDescending(s => s.DoctorFatherName);
+                    break;
+                case "Speciality":
+                    doctors = doctors.OrderByDescending(s => s.Speciality);
+                    break;
+                default:
+                    doctors = doctors.OrderBy(s => s.DoctorSoName);
+                    break;
+            }
+            return View(await doctors.ToListAsync());
         }
 
 
