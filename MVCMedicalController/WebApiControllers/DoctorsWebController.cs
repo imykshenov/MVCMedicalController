@@ -10,7 +10,7 @@ using MVCMedicalController.Models;
 
 namespace MVCMedicalController.WebApiControllers
 {
-    [Route("api/[DoctorsWeb]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class DoctorsWebController : ControllerBase
     {
