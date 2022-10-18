@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,8 @@ namespace MVCMedicalController.Models
 
         [Required]
         [StringLength(30)]
-        [Display(Name = "Number of cabinet")]
-        public string CabinetNumber { get; set; }
+        [Display(Name = "Номер кабинета")]
+        [Column("CabinetNumber")]
+        public string CabinetNumber { get; set; } = string.Empty;
     }
 }

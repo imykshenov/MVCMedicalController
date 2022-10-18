@@ -17,18 +17,23 @@ namespace MVCMedicalController.Models
         [Required]
         [StringLength(80)]
         [Display(Name = "Second Name")]
+        [Column("DoctorSoName")]
         public string? DoctorSoName { get; set; } = "Иванов";
 
         [Required]
         [StringLength(50)]
         [Display(Name = "First Name")]
+        [Column("DoctorName")]
         public string? DoctorName { get; set; } = "Иван";
 
         [Required]
         [StringLength(50)]
         [Display(Name = "Father Name")]
+        [Column("DoctorFatherName")]
         public string? DoctorFatherName { get; set; } = "Иванович";
 
+        [Required]
+        [StringLength(150)]
         [Display(Name = "Full Name")]
         public string DoctorFullName
         {
@@ -37,10 +42,22 @@ namespace MVCMedicalController.Models
                 return DoctorSoName + " " + DoctorName + " " + DoctorFatherName;
             }
         }
-        
-        public Cabinet? Cabinets{ get; set; }
-        public Speciality? Specialitys { get; set; }
-        public Sector Sectors { get; set; } 
+        [ForeignKey("CabinetID")]
+        [Column("CabinetID")]
+        public int CabinetID { get; set; }
+        public Cabinet? Cabinet{ get; set; }
+
+
+        [ForeignKey("SpecialityID")]
+        [Column("SpecialityID")]
+        public int SpecialityID { get; set; }
+        public Speciality? Speciality { get; set; }
+
+
+        [ForeignKey("SectorID")]
+        [Column("SectorID")]
+        public int SectorID { get; set; }
+        public Sector Sector { get; set; } 
 
 
 

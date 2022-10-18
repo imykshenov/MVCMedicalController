@@ -15,37 +15,53 @@ namespace MVCMedicalController.Models
         public int PatientId { get; set; }
 
         [Required]
-        [StringLength(80)]
+        [StringLength(50)]
         [Display(Name = "Second Name")]
+        [Column("PatientSoName")]
         public string PatientSoName { get; set; } = "Иванов";
 
         [Required]
         [StringLength(50)]
         [Display(Name = "First Name")]
+        [Column("PatientName")]
         public string? PatientName { get; set; } = "Иван";
 
         [Required]
         [StringLength(50)]
         [Display(Name = "Father Name")]
+        [Column("PatientFatherName")]
         public string? PatientFatherName { get; set; } = "Иванович";
 
         [Required]
-        [StringLength(200)]
+        [StringLength(300)]
         [Display(Name = "Adress")]
+        [Column("SpecialityName")]
         public string? Adress { get; set; } = "Адрес";
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Column("DateOfBirth")]
         public DateTime DateOfBirth { get; set; }
 
         [Required]
         [StringLength(10)]
-        [Display(Name = "Father Name")]
+        [Display(Name = "Пол")]
+        [Column("Sex")]
         public string? Sex { get; set; } = "муж";
 
-        public Sector? Sectors { get; set; }
 
+        [ForeignKey("sectorID")]
+        [Column("sectorID")]
+        public int? sectorID { get; set; }
+
+        public Sector? Sector { get; set; }
+
+
+
+        [Required]
+        [StringLength(150)]
         [Display(Name = "Full Name")]
+        [Column("SpecialityName")]
         public string PatientFullName
         {
             get

@@ -6,17 +6,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Microsoft.AspNetCore.Mvc.Formatters;
 
 namespace MVCMedicalController.Models
 {
     public class Sector
     {
-        [Key] public int ID { get; set; }
+        [Key]
+        public int SectorID { get; set; }
 
         [Required]
         [StringLength(30)]
         [Display(Name = "Номер участка")]
-        public string Title { get; set; } = "Участок 1";
+        [Column("SectorName")]
+        public string SectorName { get; set; } = string.Empty;
 
     }
 }
