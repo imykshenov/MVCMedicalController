@@ -20,11 +20,25 @@ namespace MVCMedicalController.Controllers
         }
 
         // GET: Doctors
-        public async Task<IActionResult> Index()
+        //public async Task<IActionResult> Index()
+        //{
+        //    var medicalContextDB = _context.Doctors.Include(d => d.Cabinet).Include(d => d.Sector).Include(d => d.Speciality);
+        //    return View(await medicalContextDB.ToListAsync());
+        //}
+
+        public async Task<IActionResult> Index(string searchString)
         {
-            var medicalContextDB = _context.Doctors.Include(d => d.Cabinet).Include(d => d.Sector).Include(d => d.Speciality);
+            var medicalContextDB = from m in _context.Doctors.Include(d => d.Cabinet).Include(d => d.Sector).Include(d => d.Speciality)
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                medicalContextDB = medicalContextDB.Where(s => s.DoctorSoName!.Contains(searchString));
+            }
+
             return View(await medicalContextDB.ToListAsync());
         }
+
 
         // GET: Doctors/Details/5
         public async Task<IActionResult> Details(int? id)
