@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MVCMedicalController.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<MedicalContextDB>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MVCMedicalControllerContext") ?? throw new InvalidOperationException("Connection string 'MVCMedicalControllerContext' not found.")));
@@ -10,6 +11,12 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
+//using (var scope = app.Services.CreateScope())
+//{
+//    var services = scope.ServiceProvider;
+
+//    DbIni.Initialize(services);
+//}
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

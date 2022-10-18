@@ -18,6 +18,6 @@ namespace MVCMedicalController.Models
         [StringLength(30)]
         [Display(Name = "Номер кабинета")]
         [Column("CabinetNumber")]
-        public string CabinetNumber { get; set; } = string.Empty;
+        public string CabinetNumber { get; set; }
     }
 }

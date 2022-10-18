@@ -19,7 +19,7 @@ namespace MVCMedicalController.Models
         [StringLength(30)]
         [Display(Name = "Номер участка")]
         [Column("SectorName")]
-        public string SectorName { get; set; } = string.Empty;
+        public string SectorName { get; set; }
 
     }
 }
