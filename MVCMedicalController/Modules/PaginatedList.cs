@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MVCMedicalController
+namespace MVCMedicalController.Modules
 {
     public class PaginatedList<T> : List<T>
     {
@@ -17,7 +17,7 @@ namespace MVCMedicalController
             PageIndex = pageIndex;
             TotalPages = (int)Math.Ceiling(count / (double)pageSize);
 
-            this.AddRange(items);
+            AddRange(items);
         }
 
         public bool HasPreviousPage => PageIndex > 1;

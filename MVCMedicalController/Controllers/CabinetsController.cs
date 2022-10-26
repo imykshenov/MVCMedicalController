@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MVCMedicalController.Data;
 using MVCMedicalController.Models;
+using MVCMedicalController.Modules;
+using Serilog;
 
 namespace MVCMedicalController.Controllers
 {
@@ -144,6 +146,7 @@ namespace MVCMedicalController.Controllers
                 .FirstOrDefaultAsync(m => m.CabinetID == id);
             if (cabinet == null)
             {
+                Log.Error( "Кабинеты не найдены", nameof(CabinetsController));
                 return NotFound();
             }
 

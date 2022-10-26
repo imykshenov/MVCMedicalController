@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using MVCMedicalController.Data;
+using MVCMedicalController.Modules;
+using Newtonsoft.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<MedicalContextDB>(options =>
@@ -12,6 +14,8 @@ var app = builder.Build();
 
 //builder.Services.AddEndpointsApiExplorer();
 //builder.Services.AddSwaggerGen();
+
+
 
 //using (var scope = app.Services.CreateScope())
 //{

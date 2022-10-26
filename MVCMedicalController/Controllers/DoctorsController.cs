@@ -8,6 +8,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using MVCMedicalController.Data;
 using MVCMedicalController.Models;
+using MVCMedicalController.Modules;
 
 namespace MVCMedicalController.Controllers
 {

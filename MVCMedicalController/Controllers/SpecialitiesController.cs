@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MVCMedicalController.Data;
 using MVCMedicalController.Models;
+using MVCMedicalController.Modules;
 
 namespace MVCMedicalController.Controllers
 {
